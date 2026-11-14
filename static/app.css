@@ -1,0 +1,98 @@
+:root {
+  --paper: #f6f1e7;
+  --card: #fffdf8;
+  --ink: #1d2b27;
+  --muted: #667570;
+  --line: #e3dccb;
+  --pine: #1f4d3f;
+  --pine-dark: #153a2f;
+  --brass: #b8863b;
+  --free: #e4f1e6;
+  --taken: #f3dcd7;
+  --mine: #d6e4f5;
+  --selected: #1f4d3f;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+header {
+  background: var(--pine);
+  color: #fdf8ec;
+  padding: 18px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 4px solid var(--brass);
+}
+
+header h1 { margin: 0; font-family: Georgia, serif; font-weight: 600; letter-spacing: .02em; font-size: 1.4rem; }
+header .who { display: flex; gap: 12px; align-items: center; font-size: .95rem; }
+
+main { max-width: 820px; margin: 28px auto; padding: 0 16px; display: grid; gap: 18px; }
+
+.card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+.card h2 { margin: 0 0 14px; font-family: Georgia, serif; font-size: 1.15rem; font-weight: 600; }
+
+label { display: block; font-size: .8rem; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: .05em; }
+input[type="text"], input[type="password"], input[type="number"] {
+  width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px;
+  font-size: 1rem; background: #fff; color: var(--ink);
+}
+
+.row { display: flex; gap: 12px; flex-wrap: wrap; align-items: end; }
+.row > .field { flex: 1; min-width: 150px; }
+
+.tabs { display: flex; gap: 6px; margin-bottom: 16px; }
+.tab { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+.tab[aria-selected="true"] { background: var(--pine); color: #fff; border-color: var(--pine); }
+
+button {
+  padding: 10px 18px; border: 1px solid transparent; border-radius: 8px; background: var(--pine);
+  color: #fff; font-size: .95rem; cursor: pointer; transition: background .15s ease, transform .1s ease;
+}
+button:hover:not(:disabled) { background: var(--pine-dark); }
+button:active:not(:disabled) { transform: translateY(1px); }
+button.secondary { background: transparent; color: var(--pine); border-color: var(--pine); }
+button.secondary:hover:not(:disabled) { background: var(--free); }
+header button.secondary { color: #fdf8ec; border-color: #fdf8ec; }
+header button.secondary:hover:not(:disabled) { background: var(--pine-dark); }
+button:disabled { opacity: .45; cursor: not-allowed; }
+button:focus-visible, input:focus-visible { outline: 3px solid var(--brass); outline-offset: 2px; }
+
+#grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.room {
+  padding: 14px 6px; text-align: center; border: 2px solid transparent; border-radius: var(--radius);
+  color: var(--ink); background: var(--free); font-weight: 600; line-height: 1.25;
+}
+.room small { display: block; font-weight: 400; font-size: .72rem; color: var(--muted); }
+.room.taken { background: var(--taken); cursor: not-allowed; }
+.room.mine { background: var(--mine); }
+.room:hover:not(:disabled) { background: #d3e8d7; }
+.room.mine:hover:not(:disabled) { background: #c3d7ee; }
+.room[aria-pressed="true"] { border-color: var(--selected); box-shadow: 0 0 0 2px var(--selected) inset; }
+.room .type { text-transform: capitalize; }
+.room.suite { border-top: 4px solid var(--brass); }
+.room.deluxe { border-top: 4px solid #8aa89d; }
+
+.legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: .8rem; color: var(--muted); margin-top: 12px; }
+.swatch { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.swatch.free { background: var(--free); }
+.swatch.taken { background: var(--taken); }
+.swatch.mine { background: var(--mine); }
+.estimate { margin-top: 14px; font-size: .95rem; color: var(--muted); }
+
+#message { min-height: 1.4em; }
+#message.err { color: #a12a1d; }
+.hidden { display: none !important; }
+
+@media (max-width: 560px) { #grid { grid-template-columns: repeat(3, 1fr); } }
+@media (prefers-reduced-motion: reduce) { button { transition: none; } }

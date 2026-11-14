@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hotel Booking System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+<header>
+  <h1>Hotel Booking System</h1>
+  <div id="who" class="who hidden">
+    <span id="whoName"></span>
+    <button class="secondary" id="logoutBtn" type="button">Log out</button>
+  </div>
+</header>
+
+<main>
+  <section class="card" id="authCard" aria-labelledby="authTitle">
+    <h2 id="authTitle">Welcome</h2>
+    <div class="tabs" role="tablist" aria-label="Account">
+      <button type="button" class="tab" role="tab" data-mode="login" aria-selected="true">Log in</button>
+      <button type="button" class="tab" role="tab" data-mode="register" aria-selected="false">Register</button>
+    </div>
+    <form id="authForm" class="row">
+      <div class="field"><label for="username">Username</label>
+        <input id="username" type="text" autocomplete="username" minlength="3" maxlength="20" required></div>
+      <div class="field"><label for="password">Password</label>
+        <input id="password" type="password" autocomplete="current-password" minlength="6" maxlength="128" required></div>
+      <button type="submit" id="authSubmit">Log in</button>
+    </form>
+  </section>
+
+  <section class="card hidden" id="roomsCard" aria-labelledby="roomsTitle">
+    <h2 id="roomsTitle">Rooms</h2>
+    <div id="grid"></div>
+    <div class="legend">
+      <span><span class="swatch free"></span>Free</span>
+      <span><span class="swatch taken"></span>Taken</span>
+      <span><span class="swatch mine"></span>Yours</span>
+      <span>Gold edge: suite &middot; Grey-green edge: deluxe</span>
+    </div>
+    <div class="estimate" id="estimate" aria-live="polite"></div>
+  </section>
+
+  <section class="card hidden" id="actionsCard" aria-labelledby="actionsTitle">
+    <h2 id="actionsTitle">Actions</h2>
+    <div class="row">
+      <div class="field"><label for="nights">Nights</label>
+        <input id="nights" type="number" min="1" max="30" value="1"></div>
+      <button type="button" id="bookBtn" disabled>Book selected</button>
+      <button type="button" class="secondary" id="checkoutSelectedBtn" disabled>Check out selected</button>
+      <button type="button" class="secondary" id="checkoutAllBtn">Check out all</button>
+      <button type="button" class="secondary" id="mineBtn">My bill</button>
+    </div>
+  </section>
+
+  <section class="card"><div id="message" role="status" aria-live="polite">Log in or register to start.</div></section>
+</main>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
